@@ -1,70 +1,134 @@
-# KisanChikitsa Project
+🌿 FloraFix – Diagnose, Treat, and Thrive
 
-## Overview
-KisanChikitsa is a web application designed for user account management, allowing users to sign up and sign in to access various features related to agricultural support and information.
+FloraFix is an AI-powered plant disease detection platform that combines cutting-edge Artificial Intelligence with ancient Ayurvedic wisdom to revolutionize agriculture in India. It helps farmers and gardeners detect plant diseases early, provides remedies, and promotes sustainable farming practices.
 
-## Project Structure
-The project is organized into two main directories: `backend` and `frontend`.
+🚀 Features
 
-### Backend
-The backend is built using Django and contains the following components:
+🌱 AI Plant Disease Detection – Upload a photo and get instant results
 
-- **manage.py**: Command-line utility for managing the Django project.
-- **kisan_chikitsa/**: Main Django project directory containing:
-  - **settings.py**: Configuration settings for the Django project.
-  - **urls.py**: URL routing for the project.
-  - **wsgi.py**: Entry point for WSGI-compatible web servers.
-- **accounts/**: Django application for user account management, including:
-  - **models.py**: Defines user account data models.
-  - **views.py**: Contains logic for user registration and authentication.
-  - **serializers.py**: Serializes user data for API responses.
-  - **urls.py**: URL routing specific to account-related views.
+🩺 First Aid Kit Suggestions – Quick remedies for common plant issues
 
-### Frontend
-The frontend consists of HTML files for user interaction:
+👨‍⚕️ One-Click Expert Help – Connect with agricultural experts
 
-- **signup.html**: User interface for creating a new account.
-- **signin.html**: User interface for logging into an existing account.
+🌿 Ayurvedic Medicine Recommendations – Natural solutions for plant health
 
-## Setup Instructions
-1. **Clone the repository**:
-   ```
-   git clone <repository-url>
-   cd kisan-chikitsa
-   ```
+📊 Smart Optimisation – Yield improvement insights
 
-2. **Set up a virtual environment**:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
+📰 Government Scheme Updates – Stay informed with the latest programs
 
-3. **Install dependencies**:
-   ```
-   pip install -r requirements.txt
-   ```
+🌦 Seasonal Care Tips & Reminders – Timely alerts for healthy crops
 
-4. **Run migrations**:
-   ```
-   python backend/manage.py migrate
-   ```
+📡 Real-Time Monitoring – Track plant health continuously
 
-5. **Start the development server**:
-   ```
-   python backend/manage.py runserver
-   ```
+🧑‍🤝‍🧑 Who We Serve
 
-## Features
-- User registration and authentication.
-- Responsive design for mobile and desktop users.
-- Secure password handling and validation.
+Farmers & Agricultural Workers – Early disease detection & yield optimization
 
-## Usage
-- Navigate to `http://localhost:8000/signup` to create a new account.
-- Navigate to `http://localhost:8000/signin` to log into your account.
+Home Gardeners & Plant Enthusiasts – Easy-to-use, affordable solutions
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
+🛠 How It Works
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+Sign Up / Log In – Create a secure account
+
+Upload Plant Image – Quick cloud upload
+
+Image Analysis – AI model analyzes the photo
+
+Diagnosis Report – Disease name, severity, possible causes
+
+Guided Solutions – Fertilizers, pesticides, fungicides & Ayurvedic remedies
+
+Follow-up & Monitoring – Real-time alerts & chatbot support
+
+💡 Why FloraFix?
+
+✅ Integrated Approach – Modern AI + Ayurvedic wisdom
+✅ Holistic Well-being – Protects crops, soil, and human health
+✅ Community Focused – Designed for Indian farmers & gardeners
+✅ Empowerment – Knowledge and tools for sustainable practices
+
+⚡ Tech Stack for Florafix
+🌐 Frontend
+
+HTML5 → Structure of web pages
+
+CSS3 → Styling and layout
+
+JavaScript (Vanilla JS) → Interactivity and client-side logic
+
+⚙️ Backend
+
+Django (Python Framework) → Handles server-side logic, routes, and integrates ML model
+
+🤖 Machine Learning
+
+Python → Core programming language
+
+TensorFlow/Keras → Deep learning framework
+
+Model Used: VGG-19 → Convolutional Neural Network (CNN) for plant disease detection
+
+📌 In short:
+Frontend: HTML, CSS, JavaScript
+Backend: Django (Python)
+Machine Learning: VGG-19 (TensorFlow/Keras)
+
+📸 Screenshots
+
+<img width="1882" height="1021" alt="{13CCF7A5-9B0A-41BE-B38A-525D72909B17}" src="https://github.com/user-attachments/assets/2b638d7a-868f-49aa-8268-29b06c3adcd8" />
+
+<img width="1886" height="974" alt="{CFB47F0D-E5D7-4996-8510-75E37007315B}" src="https://github.com/user-attachments/assets/8a0c282a-c3df-476d-91cd-b3db929a9ee4" />
+
+<img width="1904" height="898" alt="{FA0C76DA-3379-4EFE-91D7-F4840149DF33}" src="https://github.com/user-attachments/assets/0249fc47-d7e4-4429-b1b6-8ec35789fa47" />
+
+Accuracy and Loss graphs
+
+<img width="1408" height="1101" alt="image" src="https://github.com/user-attachments/assets/eb4debe0-b7ba-4624-b09c-7a7cf1af5a59" />
+
+<img width="1387" height="1101" alt="image" src="https://github.com/user-attachments/assets/87194deb-3dd1-4f7f-bcba-fcc808bcca1e" />
+
+<img width="1408" height="1101" alt="image" src="https://github.com/user-attachments/assets/40e9303c-91f2-4004-981b-b58e6185d0b9" />
+
+<img width="1387" height="1101" alt="image" src="https://github.com/user-attachments/assets/3fdc5fe9-528b-44de-b980-b04a9dd787b0" />
+
+<img width="1408" height="1101" alt="image" src="https://github.com/user-attachments/assets/4ab99a0a-ef02-4189-bdd3-6ad772e8a704" />
+
+<img width="1387" height="1101" alt="image" src="https://github.com/user-attachments/assets/80109ec8-001b-4174-91f9-e23a33a39798" />
+
+the matrix value of models:
+ for Mobilenet-v2
+ 
+ Accuracy: 0.8333
+ 
+Precision: 0.8889
+
+Recall: 0.8333
+
+F1-Score: 0.8222
+
+Specificity: 0.0000
+
+MCC: 0.7833
+
+ for densenet-121
+
+ <img width="204" height="145" alt="{842C148F-8657-411D-9DFB-42DE4233154E}" src="https://github.com/user-attachments/assets/8e0ff369-c0ee-4aa4-846b-4a8bf6aa2694" />
+
+ for VGG-19
+
+ <img width="207" height="151" alt="{CD3832E0-6A6E-4015-86F7-7164E3526F47}" src="https://github.com/user-attachments/assets/d26dd678-5797-4c37-b8a6-77c12b3ffb79" />
+
+
+
+
+
+
+👩‍💻 Team – Code Crackers
+
+Ankana Sadhukhan
+
+Asmita Banerjee
+
+Anindita Sen
+
+Isha Chakraborty
