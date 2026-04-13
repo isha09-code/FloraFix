@@ -4,3 +4,6 @@ whitenoise
 numpy
 pillow
 tensorflow
+dj-database-url
+psycopg2-binary
+python-dotenv
