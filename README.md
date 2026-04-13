@@ -24,8 +24,8 @@
 Farmers face challenges like:
 - Late disease detection  
 - Lack of expert guidance  
-- Excessive chemical usage  
-- Reduced crop productivity  
+- Overuse of harmful chemicals  
+- Low crop productivity  
 
 ---
 
@@ -33,64 +33,81 @@ Farmers face challenges like:
 
 FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assistant**.
 
-✨ It helps users to:
+✨ It enables users to:
 - Detect plant diseases instantly  
 - Get AI-powered diagnosis  
-- Receive Ayurvedic & chemical treatment suggestions  
+- Receive Ayurvedic & chemical remedies  
 - Improve crop yield efficiently  
 
-🎯 Goal: **Empower farmers with technology for sustainable agriculture**
+🎯 Goal: **Empower farmers with sustainable technology**
 
 ---
 
-### 🚀 Our Approach
+## 🚀 Our Approach
 
 - Integrated **Deep Learning (CNN models)**  
 - Combined **AI + Ayurvedic knowledge**  
-- Designed for **ease of use for Indian farmers**  
+- Designed for **simplicity & accessibility**  
 
 ---
 
-### ⚡ Key Highlights
+## ⚡ Key Highlights
 
 - 🤖 AI-based image classification  
-- 🌿 Natural treatment recommendations  
-- 📊 Smart crop optimization insights  
+- 🌿 Eco-friendly treatment solutions  
+- 📊 Smart crop insights  
 - 📡 Real-time monitoring system  
 
 ---
 
 ## ✨ Key Features
 
-✅ 🌱 AI Disease Detection (Upload & Analyze Image)  
-✅ 🩺 First Aid Suggestions for plants  
-✅ 👨‍⚕️ Expert Consultation access  
-✅ 🌿 Ayurvedic Treatment System  
-✅ 📊 Smart Yield Optimization  
-✅ 🌦 Seasonal Alerts & Care Tips  
+✅ 🌱 AI Disease Detection  
+✅ 🩺 First Aid Suggestions  
+✅ 👨‍⚕️ Expert Consultation  
+✅ 🌿 Ayurvedic Treatments  
+✅ 📊 Smart Optimization  
+✅ 🌦 Seasonal Alerts  
 ✅ 📡 Real-Time Monitoring  
 ✅ 📰 Government Scheme Updates  
+✅ 💬 Community & Chat Support  
 
 ---
 
 ## 🖼️ Screenshots
 
-### 🌱 Detection Page
-
-<img src="assets/images/detect.png" width="500"/>
-
----
-
-### 📊 Result Dashboard
-
-<img src="assets/images/result.png" width="500"/>
+### 🏠 Home Page
+<img src="assets/images/home.png" width="500"/>
 
 ---
 
-### 📈 Model Graphs
+### 🌱 Diagnose Page
+<img src="assets/images/diagnose.png" width="500"/>
 
-<img src="assets/images/accuracy.png" width="400"/>
-<img src="assets/images/loss.png" width="400"/>
+---
+
+### 📰 Government Schemes
+<img src="assets/images/schemes.png" width="500"/>
+
+---
+
+### 💬 Chat Support
+<img src="assets/images/chat.png" width="500"/>
+
+---
+
+### 🌐 Community Page
+<img src="assets/images/community.png" width="500"/>
+
+---
+
+### ℹ️ About Page
+<img src="assets/images/about.png" width="500"/>
+
+---
+
+### 🔐 Sign In / Sign Up
+<img src="assets/images/auth.png" width="500"/>
 
 ---
 
@@ -99,8 +116,8 @@ FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assi
 | Model | Accuracy | Precision | Recall | F1 Score |
 |------|---------|----------|--------|---------|
 | MobileNetV2 | 83.33% | 88.89% | 83.33% | 82.22% |
-| DenseNet-121 | Add | Add | Add | Add |
-| VGG-19 | Add | Add | Add | Add |
+| DenseNet-121 | 75.97% | 70.54% | 67.00% | 66.19% |
+| VGG-19 | 91.91% | 89.20% | 89.09% | 88.65% |
 
 ---
 
@@ -118,10 +135,10 @@ FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assi
 
 ## 🧪 How to Run the Project
 
+
 ### 📌 Requirements
 
 - Python installed  
-- Node.js (optional)  
 
 ### ▶️ Steps
 
@@ -130,3 +147,50 @@ git clone https://github.com/YOUR-REPO-LINK
 cd FloraFix
 pip install -r requirements.txt
 python manage.py runserver
+
+
+## 🧬 Future Scope
+
+🔐 Advanced User Authentication System  
+📊 AI-Powered Analytics Dashboard  
+🗄️ Backend Scalability (Django APIs / Cloud Integration)  
+📱 Mobile Application (Android & iOS)  
+🌍 Multilingual Support for regional farmers  
+🌾 IoT-Based Smart Farming Integration  
+
+---
+
+## 📎 Resources
+
+* TensorFlow / Keras  
+* Django Framework  
+* HTML, CSS, JavaScript  
+* GitHub  
+
+---
+
+## 🏆 Achievements
+
+✅ Successfully developed AI-based plant disease detection system  
+✅ Integrated Deep Learning model (VGG-19)  
+✅ Implemented sustainable Ayurvedic treatment recommendations  
+✅ Built end-to-end working web platform  
+
+---
+
+## 👩‍💻 Author
+
+**Isha Chakraborty**  
+💻 Developer | 🚀 Innovator  
+
+---
+
+## ⭐ Support
+
+If you like this project, please ⭐ the repository and share it!
+
+---
+
+<p align="center">
+  🚀 Built with passion
+</p>
