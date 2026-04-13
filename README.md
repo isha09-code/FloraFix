@@ -1,6 +1,14 @@
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?color=00FF7F&size=30&center=true&vCenter=true&width=800&lines=🌿+FloraFix;Diagnose+•+Treat+•+Thrive;AI+Plant+Disease+Detection+Platform;Sustainable+Farming+with+AI+%2B+Ayurveda" />
+  <img src="https://readme-typing-svg.herokuapp.com?color=00FF7F&size=32&center=true&vCenter=true&width=900&lines=🌿+FloraFix;Diagnose+•+Treat+•+Thrive;AI+Powered+Plant+Care+Platform;Sustainable+Farming+with+AI+%2B+Ayurveda"/>
 </p>
+
+<h1 align="center">🌿 FloraFix</h1>
+
+<p align="center">
+  <b>AI-powered plant disease detection & smart treatment platform for sustainable agriculture 🌱</b>
+</p>
+
+---
 
 <p align="center">
   <img src="https://img.shields.io/badge/Frontend-HTML%2FCSS-blue?style=for-the-badge"/>
