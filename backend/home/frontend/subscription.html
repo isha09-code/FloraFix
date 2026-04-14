@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KisanChikitsa – Subscription</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/style.css">
+
+  <div class="fixed inset-0 -z-10 bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
+
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-start p-6">
+
+  <!-- ✅ Navigation -->
+  <nav class="w-full flex justify-end px-8 py-4">
+    <ul class="flex space-x-5 text-sm font-medium text-white">
+  <li><a href="index.html" class="hover:text-green-400 transition">Home</a></li>
+  <li><a href="http://127.0.0.1:8000/signup/" class="hover:text-green-400 transition">Signup</a></li>
+  <li><a href="http://127.0.0.1:8000/signin/" class="hover:text-green-400 transition">Signin</a></li>
+  <li><a href="http://127.0.0.1:8000/diagnose/" class="hover:text-green-400 transition">Diagnose</a></li>
+  <li><a href="scheme.html" class="hover:text-green-400 transition">Scheme</a></li>
+  <li><a href="subscription.html" class="hover:text-green-400 transition">Chats</a></li>
+  <li><a href="community.html" class="hover:text-green-400 transition">Community</a></li>
+  <li><a href="about.html" class="hover:text-green-400 transition">About</a></li>
+</ul>
+  </nav>
+
+  <!-- ✅ Page Title -->
+  <h2 class="text-3xl font-bold text-green-300 mb-8">📦 Subscription</h2>
+
+  <!-- ✅ Single Subscription Plan -->
+  <section class="w-full max-w-md mb-12">
+    <div class="bg-white/10 border border-white/20 rounded-2xl p-6 text-center hover:scale-105 transition">
+      <h3 class="text-xl font-semibold text-green-400 mb-2">🌱 Regular Plan</h3>
+      <p class="text-sm text-gray-300 mb-4">Access Ayurvedic wellness updates and tips.</p>
+      <p class="text-2xl font-bold text-green-300 mb-4">₹0/month</p>
+      <a href="/payment/">
+        <button class="px-6 py-2 bg-green-500 text-black font-bold rounded-xl">Subscribe</button>
+      </a>
+    </div>
+  </section>
+
+  <!-- ✅ Terms & Conditions -->
+  <footer class="w-full max-w-3xl bg-slate-900/70 border border-white/20 rounded-2xl p-6 text-sm text-gray-300 leading-relaxed">
+    <h3 class="text-lg font-bold text-green-400 mb-3">📜 Terms & Conditions</h3>
+    <ul class="list-disc pl-6 space-y-2">
+      <li>The subscription provides access to Ayurvedic wellness tips and updates.</li>
+      <li>Information is for educational purposes and not a substitute for medical advice.</li>
+      <li>Users are advised to consult a qualified Ayurvedic practitioner for chronic issues.</li>
+      <li>Payments are non-refundable once the subscription is activated.</li>
+      <li>We reserve the right to update wellness tips and information regularly.</li>
+    </ul>
+  </footer>
+
+  <script src="/static/subscription_script.js"></script>
+</body>
+</html>

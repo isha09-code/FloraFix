@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KisanChikitsa</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col">
+  <!-- ✅ Background -->
+  <div class="fixed inset-0 -z-10 bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
+
+  <!-- ✅ Navigation -->
+  <nav class="w-full flex justify-end px-8 py-4">
+      <ul class="flex space-x-5 text-sm font-medium text-white">
+  <li><a href="index.html" class="hover:text-green-400 transition">Home</a></li>
+  <li><a href="http://127.0.0.1:8000/signup/" class="hover:text-green-400 transition">Signup</a></li>
+  <li><a href="http://127.0.0.1:8000/signin/" class="hover:text-green-400 transition">Signin</a></li>
+  <li><a href="http://127.0.0.1:8000/diagnose/" class="hover:text-green-400 transition">Diagnose</a></li>
+  <li><a href="scheme.html" class="hover:text-green-400 transition">Scheme</a></li>
+  <li><a href="subscription.html" class="hover:text-green-400 transition">Chats</a></li>
+  <li><a href="community.html" class="hover:text-green-400 transition">Community</a></li>
+  <li><a href="about.html" class="hover:text-green-400 transition">About</a></li>
+</ul>
+  </nav>
+
+  <!-- ✅ Agricultural Schemes (UNCHANGED) -->
+  <section class="px-6 md:px-12 py-16">
+    <h1 class="text-4xl font-bold text-center mb-12 text-green-300">🌱 Agricultural Schemes</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- (All your schemes remain exactly same as before, unchanged) -->
+      <!-- ✅ PM Fasal Bima Yojana -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+        <h2 class="text-xl font-semibold text-green-400">Pradhan Mantri Fasal Bima Yojana</h2>
+        <p class="text-gray-300 text-sm mt-2">Crop insurance providing financial support to farmers in case of crop loss due to natural calamities.</p>
+        <p class="mt-3"><span class="font-semibold text-green-300">Ministry:</span> Agriculture & Farmers Welfare</p>
+        <p><span class="font-semibold text-green-300">Eligibility:</span> All farmers in notified areas.</p>
+        <p><span class="font-semibold text-green-300">Benefits:</span> Insurance coverage & financial aid.</p>
+        <a href="https://pmfby.gov.in/" target="_blank" class="mt-3 inline-block bg-green-600 px-4 py-2 rounded-lg text-sm hover:bg-green-500">Visit Official Website</a>
+      </div>
+
+      <!-- ✅ PM Krishi Sinchai -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+        <h2 class="text-xl font-semibold text-green-400">Pradhan Mantri Krishi Sinchai Yojana</h2>
+        <p class="text-gray-300 text-sm mt-2">Improved irrigation access for farmers with motto "More crop per drop".</p>
+        <p class="mt-3"><span class="font-semibold text-green-300">Ministry:</span> Agriculture & Farmers Welfare</p>
+        <p><span class="font-semibold text-green-300">Eligibility:</span> All farmers, focus on small & marginal.</p>
+        <p><span class="font-semibold text-green-300">Benefits:</span> Better irrigation, water-use efficiency.</p>
+        <a href="https://pmksy.gov.in/" target="_blank" class="mt-3 inline-block bg-green-600 px-4 py-2 rounded-lg text-sm hover:bg-green-500">Visit Official Website</a>
+      </div>
+
+      <!-- ✅ Soil Health Card -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+        <h2 class="text-xl font-semibold text-green-400">Soil Health Card Scheme</h2>
+        <p class="text-gray-300 text-sm mt-2">Provides soil nutrient information & fertilizer recommendations to farmers.</p>
+        <p class="mt-3"><span class="font-semibold text-green-300">Ministry:</span> Agriculture & Farmers Welfare</p>
+        <p><span class="font-semibold text-green-300">Eligibility:</span> All farmers.</p>
+        <p><span class="font-semibold text-green-300">Benefits:</span> Soil testing & fertilizer advice.</p>
+        <a href="https://soilhealth.dac.gov.in/" target="_blank" class="mt-3 inline-block bg-green-600 px-4 py-2 rounded-lg text-sm hover:bg-green-500">Visit Official Website</a>
+      </div>
+
+      <!-- ✅ PKVY -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+        <h2 class="text-xl font-semibold text-green-400">Paramparagat Krishi Vikas Yojana</h2>
+        <p class="text-gray-300 text-sm mt-2">Promotes organic farming practices & soil health improvement.</p>
+        <p class="mt-3"><span class="font-semibold text-green-300">Ministry:</span> Agriculture & Farmers Welfare</p>
+        <p><span class="font-semibold text-green-300">Eligibility:</span> Farmers adopting organic farming.</p>
+        <p><span class="font-semibold text-green-300">Benefits:</span> Training & financial aid for organic farming.</p>
+        <a href="https://pgsindia-ncof.gov.in/pkvy/index.aspx" target="_blank" class="mt-3 inline-block bg-green-600 px-4 py-2 rounded-lg text-sm hover:bg-green-500">Visit Official Website</a>
+      </div>
+
+      <!-- ✅ PM-KISAN -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+        <h2 class="text-xl font-semibold text-green-400">Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)</h2>
+        <p class="text-gray-300 text-sm mt-2">Direct income support scheme providing ₹6,000 per year to small and marginal farmers.</p>
+        <p class="mt-3"><span class="font-semibold text-green-300">Ministry:</span> Agriculture & Farmers Welfare</p>
+        <p><span class="font-semibold text-green-300">Eligibility:</span> Small & marginal farmers with up to 2 hectares of land.</p>
+        <p><span class="font-semibold text-green-300">Benefits:</span> Direct cash transfer in installments.</p>
+        <a href="https://pmkisan.gov.in/" target="_blank" class="mt-3 inline-block bg-green-600 px-4 py-2 rounded-lg text-sm hover:bg-green-500">Visit Official Website</a>
+      </div>
+
+      <!-- ✅ KCC -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+        <h2 class="text-xl font-semibold text-green-400">Kisan Credit Card (KCC)</h2>
+        <p class="text-gray-300 text-sm mt-2">Provides timely credit to farmers at low interest rates for agricultural needs.</p>
+        <p class="mt-3"><span class="font-semibold text-green-300">Ministry:</span> Finance & Agriculture</p>
+        <p><span class="font-semibold text-green-300">Eligibility:</span> All farmers including fisheries & animal husbandry.</p>
+        <p><span class="font-semibold text-green-300">Benefits:</span> Loan facility with interest subvention.</p>
+        <a href="https://www.myscheme.gov.in/schemes/kcc" target="_blank" class="mt-3 inline-block bg-green-600 px-4 py-2 rounded-lg text-sm hover:bg-green-500">Visit Official Website</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ✅ Community Blogs (UPDATED with real links) -->
+  <section class="px-6 md:px-12 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12 text-green-300">📝 Community Blogs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl shadow hover:scale-105 transition">
+        <p class="text-xs text-gray-400 mb-2">July 2025 • Farmonaut</p>
+        <h3 class="text-lg font-semibold text-green-400">10 Sustainable Farming Practices in India</h3>
+        <p class="text-gray-300 text-sm mt-2">Agroforestry, crop rotation, hydroponics, and more.</p>
+        <a href="https://farmonaut.com/asia/sustainable-farming-methods-10-powerful-practices-for-india" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Read Original →</a>
+      </div>
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl shadow hover:scale-105 transition">
+        <p class="text-xs text-gray-400 mb-2">May 2025 • NetZero India</p>
+        <h3 class="text-lg font-semibold text-green-400">AI-Powered Crop Disease Detector Apps</h3>
+        <p class="text-gray-300 text-sm mt-2">How AI helps diagnose plant diseases instantly.</p>
+        <a href="https://netzeroindia.org/ai-powered-crop-disease-detector-apps/" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Read Original →</a>
+      </div>
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl shadow hover:scale-105 transition">
+        <p class="text-xs text-gray-400 mb-2">2025 • ASQI Insights</p>
+        <h3 class="text-lg font-semibold text-green-400">Trends & Innovations in Sustainable Agriculture</h3>
+        <p class="text-gray-300 text-sm mt-2">Expert insights on sustainable food systems & innovations.</p>
+        <a href="https://asqi.in/blogs/" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Read Original →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Upcoming Events (all 6 with working links, 2nd & 4th changed) -->
+  <section class="px-6 md:px-12 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12 text-green-300">📅 Upcoming Events</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Event 1 -->
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:scale-105 transition">
+        <p class="text-sm font-bold text-green-400">Jun 15 • Virtual Workshop</p>
+        <h3 class="text-lg font-semibold text-green-400">Organic Pest Control</h3>
+        <p class="text-gray-300 text-sm mt-2">Learn organic pest control methods via Zoom.</p>
+        <p class="text-xs text-gray-400 mt-1">10:00 AM – 12:00 PM</p>
+        <a href="https://nconf.dac.gov.in/webinarorganicfarming" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Visit Event Page →</a>
+      </div>
+
+      <!-- Event 2 (changed link) -->
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:scale-105 transition">
+        <p class="text-sm font-bold text-green-400">Jul 05 • Farmer’s Meetup</p>
+        <h3 class="text-lg font-semibold text-green-400">Farmer’s Market Meetup</h3>
+        <p class="text-gray-300 text-sm mt-2">Connect with local farmers at City Central Park.</p>
+        <p class="text-xs text-gray-400 mt-1">8:00 AM – 1:00 PM</p>
+        <a href="https://icar.org.in/" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Visit Event Page →</a>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:scale-105 transition">
+        <p class="text-sm font-bold text-green-400">Aug 22 • Soil Health</p>
+        <h3 class="text-lg font-semibold text-green-400">Soil Health Workshop</h3>
+        <p class="text-gray-300 text-sm mt-2">Hands-on workshop on testing & improving soil health.</p>
+        <p class="text-xs text-gray-400 mt-1">9:00 AM – 3:00 PM</p>
+        <a href="https://iari.res.in/" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Visit Event Page →</a>
+      </div>
+
+      <!-- Event 4 (changed link) -->
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:scale-105 transition">
+        <p class="text-sm font-bold text-green-400">Sep 10 • Training Program</p>
+        <h3 class="text-lg font-semibold text-green-400">Farmers’ Digital Literacy Camp</h3>
+        <p class="text-gray-300 text-sm mt-2">Awareness session on using apps for crop management & weather updates.</p>
+        <p class="text-xs text-gray-400 mt-1">11:00 AM – 2:00 PM</p>
+        <a href="https://niphm.gov.in/" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Visit Event Page →</a>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:scale-105 transition">
+        <p class="text-sm font-bold text-green-400">Oct 03 • Exhibition</p>
+        <h3 class="text-lg font-semibold text-green-400">AgriTech Expo 2025</h3>
+        <p class="text-gray-300 text-sm mt-2">Showcasing modern farming technologies & startups.</p>
+        <p class="text-xs text-gray-400 mt-1">10:00 AM – 6:00 PM</p>
+        <a href="https://www.kisaanhelpline.com/agriculture-events" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Visit Event Page →</a>
+      </div>
+
+      <!-- Event 6 -->
+      <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:scale-105 transition">
+        <p class="text-sm font-bold text-green-400">Nov 18 • Awareness Drive</p>
+        <h3 class="text-lg font-semibold text-green-400">Crop Insurance Awareness Camp</h3>
+        <p class="text-gray-300 text-sm mt-2">Helping farmers enroll & understand crop insurance schemes.</p>
+        <p class="text-xs text-gray-400 mt-1">9:30 AM – 1:30 PM</p>
+        <a href="https://nconf.dac.gov.in/" target="_blank" class="mt-3 inline-block text-green-400 hover:underline">Visit Event Page →</a>
+      </div>
+
+    </div>
+  </section>
+</body>
+</html>

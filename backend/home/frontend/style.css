@@ -1,0 +1,28 @@
+/* Shift text to the left */
+.typewriter-text {
+  color: #00ffcc;
+  align-self: flex-start;       /* Push the text to the left */
+  margin-left: 5vw;
+  margin-top: 10vw;             /* Optional spacing from the left edge */
+  margin-bottom: 6vw; 
+}
+
+nav ul li a {
+  color: #00ffcc; /* Tailwind's green-500 */
+  font-weight: 500;
+  font-size: 0.875rem; /* same as Tailwind's text-sm */
+}
+
+
+
+/* Typewriter blinking cursor */
+#typewriter::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

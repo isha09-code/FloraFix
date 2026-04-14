@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flora Fix – Payment to Remedies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Background dotted design */
+    .dotted-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      background: #000000;
+      background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
+      background-size: 20px 20px;
+    }
+
+    /* Glass box for success */
+    .glass-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6),
+                  inset 0 2px 8px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .glass-box:hover {
+      transform: scale(1.02) translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7),
+                  inset 0 3px 10px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Hide pages initially */
+    .hidden-page { display: none; }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-start p-6">
+
+  
+  <!-- Background Layer -->
+  <div class="dotted-bg"></div>
+
+  <!-- ========== PAYMENT PAGE ========== -->
+  <section id="payment-page" class="w-full flex flex-col items-center">
+    <nav class="w-full flex justify-between items-center py-4 px-6 bg-slate-900/60 rounded-2xl backdrop-blur-lg mb-10">
+      <h1 class="text-2xl font-bold text-green-400">🌿 Flora Fix</h1>
+    </nav>
+
+    <h2 class="text-3xl font-bold text-green-300 mb-8">💳 Secure Payment</h2>
+
+    <section class="w-full max-w-md bg-white/10 border border-white/20 rounded-2xl p-8 text-left">
+      <form id="payment-form">
+        <label class="block mb-4">
+          <span class="text-gray-200">Full Name</span>
+          <input type="text" class="w-full mt-2 p-3 rounded-lg bg-slate-800 text-white" required>
+        </label>
+        <label class="block mb-4">
+          <span class="text-gray-200">Email Address</span>
+          <input type="email" class="w-full mt-2 p-3 rounded-lg bg-slate-800 text-white" required>
+        </label>
+        <label class="block mb-4">
+          <span class="text-gray-200">Card Number</span>
+          <input type="text" maxlength="16" class="w-full mt-2 p-3 rounded-lg bg-slate-800 text-white" required>
+        </label>
+        <div class="flex space-x-4 mb-4">
+          <label class="flex-1">
+            <span class="text-gray-200">Expiry (MM/YY)</span>
+            <input type="text" maxlength="5" class="w-full mt-2 p-3 rounded-lg bg-slate-800 text-white" required>
+          </label>
+          <label class="flex-1">
+            <span class="text-gray-200">CVV</span>
+            <input type="password" maxlength="3" class="w-full mt-2 p-3 rounded-lg bg-slate-800 text-white" required>
+          </label>
+        </div>
+        <button type="submit" class="w-full py-3 mt-2 bg-green-500 text-black font-bold rounded-xl">
+          Pay ₹0 for Ayurvedic Treatment
+        </button>
+      </form>
+    </section>
+    <p id="payment-status" class="mt-6 text-lg text-cyan-300 font-mono"></p>
+  </section>
+
+  <!-- ========== SUCCESS PAGE ========== -->
+  <section id="success-page" class="hidden-page flex flex-col items-center justify-center min-h-screen">
+    <header class="absolute top-6 w-full text-center">
+      <h1 class="text-3xl font-bold text-green-400">🌿 Flora Fix</h1>
+    </header>
+    <div class="glass-box max-w-xl w-full p-10 text-center">
+      <h2 class="text-2xl font-bold text-green-300 mb-4">✅ Congratulations!</h2>
+      <p class="text-lg text-gray-200 mb-6">
+        You have successfully unlocked your <span class="text-green-400 font-semibold">Premium ship</span>.<br>
+        Now you are eligible to use <span class="text-green-300 font-bold">Ayurvedic Remedies</span>.
+      </p>
+      <button id="go-remedies" 
+        class="inline-block mt-4 px-6 py-2 bg-green-500 text-black font-semibold rounded-lg shadow-md hover:bg-green-400 transition">
+        Go to Ayurvedic Remedies
+      </button>
+    </div>
+  </section>
+
+  <!-- ========== REMEDIES PAGE ========== -->
+  <section id="remedies-page" class="hidden-page w-full flex flex-col items-center">
+    <header class="w-full text-center my-6">
+      <h1 class="text-3xl font-bold text-green-400">🌿 Ayurvedic Remedies</h1>
+    </header>
+
+    <div class="w-full max-w-lg bg-white/10 border border-white/20 rounded-2xl p-6">
+      <label for="diseaseDropdown" class="block mb-3 text-lg">Select a disease:</label>
+      <select id="diseaseDropdown" class="w-full p-3 rounded-lg bg-slate-800 text-white mb-4" onchange="selectDisease()">
+        <option value="">-- Choose a Disease --</option>
+      </select>
+      <div id="chatbox" class="h-64 overflow-y-auto bg-slate-900 p-4 rounded-lg border border-slate-700"></div>
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    // Page switching
+    const paymentForm = document.getElementById("payment-form");
+    const paymentPage = document.getElementById("payment-page");
+    const successPage = document.getElementById("success-page");
+    const remediesPage = document.getElementById("remedies-page");
+    const paymentStatus = document.getElementById("payment-status");
+    const goRemediesBtn = document.getElementById("go-remedies");
+
+    paymentForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      paymentStatus.textContent = "✅ Payment Successful!";
+      setTimeout(()=>{
+        paymentPage.style.display="none";
+        successPage.style.display="flex";
+      },1000);
+    });
+
+    goRemediesBtn.addEventListener("click", ()=>{
+      successPage.style.display="none";
+      remediesPage.style.display="flex";
+    });
+
+    // 50 common diseases with remedies
+    const remedies = {
+      "Fever": ["Drink tulsi tea","Take giloy juice","Rest and hydrate","Use coriander water"],
+      "Cold": ["Ginger tea","Tulsi leaves","Honey with warm water","Inhale steam"],
+      "Cough": ["Mulethi powder","Turmeric milk","Ginger-honey mix","Tulsi tea"],
+      "Headache": ["Peppermint oil massage","Ginger tea","Adequate sleep","Hydration"],
+      "Diabetes": ["Bitter gourd juice","Fenugreek seeds","Jamun seed powder","Neem leaves"],
+      "Hypertension": ["Garlic cloves","Ashwagandha","Arjuna bark decoction","Reduce salt"],
+      "Asthma": ["Tulsi tea","Licorice root","Ginger-honey mix","Black cumin"],
+      "Acidity": ["Jeera water","Amla juice","Banana","Coconut water"],
+      "Indigestion": ["Ajwain with water","Ginger tea","Mint leaves","Fennel seeds"],
+      "Constipation": ["Triphala powder","Isabgol husk","Warm milk","Papaya"],
+      "Diarrhea": ["ORS solution","Pomegranate rind decoction","Ginger water","Banana"],
+      "Cholera": ["ORS solution","Neem decoction","Pomegranate rind","Ginger water"],
+      "Malaria": ["Neem tea","Papaya leaf juice","Tulsi decoction","Stay hydrated"],
+      "Dengue": ["Papaya leaf juice","Giloy decoction","Neem tea","Coconut water"],
+      "Typhoid": ["Tulsi decoction","Clove tea","Garlic water","Light diet"],
+      "Anemia": ["Beetroot juice","Spinach","Amla juice","Sesame seeds"],
+      "Jaundice": ["Sugarcane juice","Aloe vera juice","Turmeric milk","Radish leaves"],
+      "Obesity": ["Honey-lemon water","Green tea","Triphala powder","Warm water"],
+      "Arthritis": ["Turmeric milk","Ginger tea","Fenugreek seeds","Ashwagandha"],
+      "Joint Pain": ["Castor oil massage","Turmeric milk","Ginger tea","Eucalyptus oil"],
+      "Back Pain": ["Garlic oil massage","Turmeric milk","Yoga","Warm compress"],
+      "Skin Allergy": ["Neem leaves","Turmeric paste","Aloe vera gel","Sandalwood paste"],
+      "Acne": ["Neem paste","Tulsi leaves","Turmeric paste","Aloe vera gel"],
+      "Eczema": ["Coconut oil","Neem oil","Aloe vera gel","Turmeric paste"],
+      "Psoriasis": ["Aloe vera gel","Neem leaves","Turmeric paste","Coconut oil"],
+      "Hair Fall": ["Amla oil","Bhringraj oil","Coconut oil","Aloe vera gel"],
+      "Dandruff": ["Neem oil","Lemon juice","Fenugreek paste","Coconut oil"],
+      "Insomnia": ["Ashwagandha","Brahmi","Warm milk","Meditation"],
+      "Stress": ["Ashwagandha","Tulsi tea","Meditation","Yoga"],
+      "Depression": ["Brahmi","Ashwagandha","Tulsi tea","Meditation"],
+      "Memory Loss": ["Brahmi","Shankhpushpi","Ashwagandha","Almonds"],
+      "Migraine": ["Peppermint oil","Ginger tea","Tulsi leaves","Yoga"],
+      "Sinusitis": ["Steam inhalation","Tulsi tea","Turmeric milk","Ginger tea"],
+      "Sore Throat": ["Warm salt water gargle","Turmeric milk","Honey-ginger mix","Tulsi tea"],
+      "Tonsillitis": ["Turmeric milk","Warm salt water gargle","Tulsi tea","Honey-ginger mix"],
+      "Eye Strain": ["Rose water","Cucumber slices","Triphala wash","Amla juice"],
+      "Toothache": ["Clove oil","Garlic paste","Salt water rinse","Neem twig brushing"],
+      "Ear Pain": ["Garlic oil drops","Tulsi leaf juice","Mustard oil","Warm compress"],
+      "PCOS": ["Cinnamon tea","Fenugreek","Flax seeds","Aloe vera juice"],
+      "Menstrual Cramps": ["Ginger tea","Cinnamon tea","Ajwain water","Warm compress"],
+      "Leucorrhea": ["Banana","Fenugreek seeds","Amla juice","Coriander seeds"],
+      "UTI": ["Cranberry juice","Tulsi leaves","Coriander seeds","Barley water"],
+      "Kidney Stones": ["Lemon water","Coconut water","Pomegranate juice","Tulsi leaves"],
+      "Liver Disorder": ["Amla juice","Turmeric","Beetroot juice","Bhringraj"],
+      "Thyroid": ["Coconut oil","Ashwagandha","Flax seeds","Yoga"],
+      "Tuberculosis": ["Amla juice","Garlic","Turmeric","Milk"],
+      "Piles": ["Triphala","Isabgol","Radish juice","Buttermilk"],
+      "Gastritis": ["Jeera water","Amla juice","Banana","Coconut water"]
+    };
+
+    // Populate dropdown
+    const dropdown = document.getElementById("diseaseDropdown");
+    Object.keys(remedies).forEach(disease=>{
+      const opt = document.createElement("option");
+      opt.value = disease;
+      opt.textContent = disease;
+      dropdown.appendChild(opt);
+    });
+
+    // Chatbox response
+    function selectDisease(){
+      const selected = dropdown.value;
+      const chatbox = document.getElementById("chatbox");
+      if (!selected) return;
+      const userMessage = document.createElement("div");
+      userMessage.className="text-right text-blue-400 mb-2";
+      userMessage.textContent="You selected: "+selected;
+      chatbox.appendChild(userMessage);
+
+      const botMessage = document.createElement("div");
+      botMessage.className="text-left text-green-300 mb-4";
+      let tipsHTML="<b>Ayurvedic Tips:</b><ul class='list-disc ml-6'>";
+      remedies[selected].forEach(tip=>{
+        tipsHTML+=`<li>${tip}</li>`;
+      });
+      tipsHTML+="</ul>";
+      botMessage.innerHTML=tipsHTML;
+      chatbox.appendChild(botMessage);
+
+      chatbox.scrollTop=chatbox.scrollHeight;
+      dropdown.value="";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnose Your Plant</title>
+
+  <!-- ✅ Correct way to include CSS -->
+  <link rel="stylesheet" href="{% static 'diagnose_style.css' %}">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-exo text-gray-200 relative">
+
+  <!-- Background -->
+  <div class="dotted-bg"></div>
+
+  <!-- Navbar -->
+  <header class="navbar glass-effect flex justify-between items-center px-6 py-3">
+    <h1 class="logo">🌱 Plant Disease Diagnosis</h1>
+
+    <!-- 🛒 Shopping Button (Top Right) -->
+    <!-- <a href="https://www.agrostar.in/"
+       target="_blank"
+       class="px-3 py-1 bg-green-600 text-white text-xs rounded-md shadow hover:bg-green-700 transition">
+       🛒 Buy Pesticides
+    </a> -->
+  </header>
+
+  <!-- Django messages -->
+  {% if messages %}
+    <div class="messages glass-effect max-w-2xl mx-auto mt-6 p-4 rounded-xl">
+      {% for message in messages %}
+        <p class="message {{ message.tags }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <!-- Upload Section -->
+    <form id="diagnoseForm" method="POST" enctype="multipart/form-data" class="upload-box card-3d">
+      {% csrf_token %}
+      <h2 class="section-title">Upload Plant Image</h2>
+      <p>Take a photo or upload an image of your plant to diagnose issues.</p>
+      <input type="file" name="plantImage" id="plantInput" accept="image/*">
+      <button type="submit" class="btn-3d">Diagnose</button>
+    </form>
+
+    <!-- Preview -->
+    <section id="previewSection" class="preview-box card-3d hidden">
+      <h2 class="section-title">Preview</h2>
+      <img id="previewImage" alt="Plant Preview">
+    </section>
+
+    <!-- Result -->
+    <section id="resultSection" class="result-box card-3d {% if not result %}hidden{% endif %}">
+      <h2 class="section-title">Diagnosis Result</h2>
+
+      {% if uploaded_image_url %}
+        <img src="{{ uploaded_image_url }}" alt="Uploaded Leaf" class="mx-auto rounded-xl mb-4" width="250">
+      {% endif %}
+
+      {% if result %}
+        <p id="resultText" class="mb-4">
+          <strong>Disease:</strong> {{ result }} <br>
+          <!-- <strong>Confidence:</strong> {{ confidence }}% -->
+        </p>
+
+        <!-- 🛒 Shopping Button (Below Result) -->
+        <div class="text-center">
+          <a href="https://www.agrostar.in/"
+             target="_blank"
+             class="px-6 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition">
+             🛒 Buy Fertilizers & Pesticides
+          </a>
+        </div>
+
+      {% else %}
+        <p id="resultText">Upload an image to see diagnosis.</p>
+      {% endif %}
+    </section>
+
+    
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer glass-effect">
+    <p>© 2025 All rights reserved</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="{% static 'diagnose_script.js' %}"></script>
+</body>
+</html>

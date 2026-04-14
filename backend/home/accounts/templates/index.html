@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Florafix</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ✅ Background -->
+  <div class="fixed inset-0 -z-10 bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
+
+  <!-- ✅ Static CSS -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .flip-card {
+      perspective: 1000px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      transition: transform 1.5s;
+      transform-style: preserve-3d;
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-white flex flex-col">
+
+  <!-- ✅ Top Navigation Bar with Logo -->
+  <nav class="w-full flex items-center justify-between px-8 py-4">
+    <div class="flex items-center space-x-2">
+      <img src="https://static.vecteezy.com/system/resources/previews/019/813/073/large_2x/modern-medical-and-health-care-center-ayurvedic-logo-design-illustration-free-vector.jpg"
+           alt="FloraFix Tree Logo"
+           class="h-12 w-auto">
+      <span class="text-xl font-semibold text-green-800">FloraFix</span>
+    </div>
+
+    <!-- Navigation Links (Right) -->
+    <ul class="flex space-x-5 text-sm font-medium text-white">
+      <li><a href="{% url 'home' %}" class="hover:text-green-400 transition">Home</a></li>
+      <li><a href="{% url 'diagnose' %}" class="hover:text-green-400 transition">Diagnose</a></li>
+      <li><a href="{% url 'scheme' %}" class="hover:text-green-400 transition">Scheme</a></li>
+      <li><a href="{% url 'subscription' %}" class="hover:text-green-400 transition">Chats</a></li>
+      <li><a href="{% url 'community' %}" class="hover:text-green-400 transition">Community</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-green-400 transition">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- ✅ Typewriter Section -->
+  <section id="home" class="flex flex-col items-center justify-center pt-10">
+    <h1 id="typewriter" class="typewriter-text text-6xl font-mono"></h1>
+  </section>
+
+  <!-- ✅ Image Flip Section -->
+  <section class="flex justify-center px-10 mb-16 mt-10">
+    <div class="flip-card">
+      <div class="flip-card-inner" id="flip-card-inner">
+        <div class="flip-card-front bg-white/10 border border-white/10 rounded-2xl p-4 backdrop-blur-lg shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+          <img id="flip-card-image"
+               src="https://media.istockphoto.com/id/869262278/photo/everyday-should-be-earth-day.webp?a=1&b=1&s=612x612&w=0&k=20&c=QbJzIt-z2P7cQ-JjvrcbH_EDpDMI73gTD4egKAuNnLA="
+               alt="Farming"
+               class="w-full h-full object-cover rounded-2xl">
+        </div>
+        <div class="flip-card-back bg-white/10 border border-white/10 rounded-2xl p-4 backdrop-blur-lg shadow-[0_4px_30px_rgba(0,0,0,0.3)] flex items-center justify-center">
+          <img id="flip-card-back-image"
+               src="https://plus.unsplash.com/premium_photo-1664476484425-79b8ce32c009?q=80&w=1170&auto=format&fit=crop"
+               alt="Next Farming"
+               class="w-full h-full object-cover rounded-2xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Features Section -->
+  <section class="px-6 md:px-10 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Cards (unchanged) -->
+    <!-- ... your feature cards remain exactly the same ... -->
+  </section>
+
+  <!-- ✅ External Script -->
+  <script src="{% static 'script.js' %}"></script>
+
+  <!-- ✅ Flip Animation Script -->
+  <script>
+    const imageUrls = [
+      "https://media.istockphoto.com/id/1277110293/photo/close-up-of-woman-caring-for-and-watering-house-plants-with-spray.jpg?s=612x612&w=0&k=20&c=H7bAbbL8xFePigxnlmleSJhN4YHtVxm4AbDkckkKZ2A=",
+      "https://media.istockphoto.com/id/1180227901/photo/witchs-laboratory-alchemical-equipment-apothecary-treatment.jpg?s=612x612&w=0&k=20&c=ee-QkTHD0_DHGNf-u1Mh_70A9ZMzer-bnkAumr3Wdeo=",
+      "https://plus.unsplash.com/premium_photo-1664476484425-79b8ce32c009?q=80&w=1170&auto=format&fit=crop",
+      "https://i.ytimg.com/vi/vOvmhAsPolo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBGaZy9p8sOYusLXFqgkOm55633sg",
+      "https://media.istockphoto.com/id/2168234067/photo/red-colour-beetle-on-leaf.jpg?s=612x612&w=0&k=20&c=Ry3fsmpcdnUzc6HTDC3gJo_fv0SiGK2jYKmagr2VPp4="
+    ];
+
+    let currentIndex = 0;
+
+    function changeImage() {
+      const flipCardInner = document.getElementById('flip-card-inner');
+      const backImageElement = document.getElementById('flip-card-back-image');
+      const nextIndex = (currentIndex + 1) % imageUrls.length;
+      backImageElement.src = imageUrls[nextIndex];
+      flipCardInner.style.transform = 'rotateY(180deg)';
+
+      setTimeout(() => {
+        currentIndex = nextIndex;
+        const imageElement = document.getElementById('flip-card-image');
+        imageElement.src = imageUrls[currentIndex];
+        flipCardInner.style.transform = 'rotateY(0deg)';
+      }, 1500);
+    }
+
+    setInterval(changeImage, 3000);
+  </script>
+</body>
+</html>

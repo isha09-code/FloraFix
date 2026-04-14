@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnose Your Plant</title>
+  <link rel="stylesheet" href="/static/diagonise_style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (stylish + futuristic) -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600&family=Orbitron:wght@500;700&family=Exo+2:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-exo text-gray-200 relative">
+
+  <!-- Background (radial dots like before) -->
+  <div class="dotted-bg"></div>
+
+  <!-- Navbar -->
+  <header class="navbar glass-effect">
+    <h1 class="logo">🌱 Diagnose Your Plant</h1>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    <!-- Upload Section -->
+    <section class="upload-box card-3d">
+      <h2 class="section-title">Upload Plant Image</h2>
+      <p>Take a photo or upload an image of your plant to diagnose issues.</p>
+      <input type="file" id="plantInput" accept="image/*">
+      <button id="diagnoseBtn" class="btn-3d">Diagnose</button>
+    </section>
+
+    <!-- Preview -->
+    <section class="preview-box card-3d">
+      <h3 class="section-title">Preview</h3>
+      <img id="previewImg" src="" alt="Plant preview">
+    </section>
+
+    <!-- Result -->
+    <section class="result-box card-3d" id="resultBox">
+      <h2 class="section-title">Diagnosis Result</h2>
+      <p id="resultText">Upload a plant image and click Diagnose to see results.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer glass-effect">
+    <p>© 2025 All rights received</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="/static/diagonise_script.js"></script>
+</body>
+</html>

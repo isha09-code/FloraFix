@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Florafix - Community</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* 3D Hover Effect */
+    .popup-3d { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .popup-3d:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 20px 40px rgba(0, 255, 150, 0.3); }
+
+    /* Chatbot 1 (Plant Expert) */
+    #botModal {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+    }
+    .chat-container {
+      width: 520px;
+      height: 740px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    .chat-header {
+      background: linear-gradient(135deg, #119911, #00ff00);
+      color: white;
+      text-align: center;
+      padding: 22px;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px #000;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+    }
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: rgba(0, 20, 0, 0.4);
+      border-top: 1px solid rgba(0,255,0,0.2);
+      border-bottom: 1px solid rgba(0,255,0,0.2);
+      backdrop-filter: blur(4px);
+    }
+    .chat-message {
+      margin: 10px 0;
+      padding: 14px 18px;
+      border-radius: 14px;
+      max-width: 75%;
+      font-size: 15px;
+      line-height: 1.5;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .chat-message:hover { transform: translateY(-2px); }
+    .user { background: #FFD580; margin-left: auto; text-align: right; border: 1px solid #FFB84D; color: black; }
+    .bot { background: #90EE90; margin-right: auto; text-align: left; border: 1px solid #32CD32; color: black; }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid rgba(0,255,0,0.3);
+      background: rgba(0,0,0,0.2);
+      padding: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      backdrop-filter: blur(8px);
+      border-radius: 0 0 20px 20px;
+    }
+    .chat-input button {
+      padding: 12px 16px;
+      margin: 4px;
+      border: none;
+      background: linear-gradient(145deg, #4CAF50, #1b5e20);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      font-size: 14px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .chat-input button:hover {
+      transform: translateY(-3px) scale(1.06);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.6);
+      background: linear-gradient(145deg, #70ff70, #1b5e20);
+    }
+    #imageInput {
+      margin: 8px;
+      border-radius: 8px;
+      padding: 6px;
+      cursor: pointer;
+      border: 1px solid #4CAF50;
+      background: rgba(0, 128, 0, 0.1);
+      transition: 0.3s;
+    }
+    #imageInput:hover { background: rgba(0, 128, 0, 0.3); transform: scale(1.05); }
+    .chat-image { max-width: 220px; border-radius: 14px; margin: 5px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    #closeBot { position: absolute; top: 10px; right: 16px; font-size: 24px; font-weight: bold; color: #fff; cursor: pointer; text-shadow: 0 1px 2px #000; }
+
+    /* Chatbot 2 (Organic Farming) */
+    .chatbot-container-2 {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      max-height: 500px;
+      background: #1e293b;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 0.9rem;
+      z-index: 100;
+    }
+    .chatbot-header-2 {
+      background: linear-gradient(to right, #22c55e, #3b82f6);
+      color: white;
+      padding: 0.75rem;
+      font-weight: bold;
+      text-align: center;
+      position: relative;
+    }
+    .chatbot-header-2 button { position: absolute; top: 6px; right: 10px; font-size: 18px; background: transparent; border: none; color: black; font-weight: bold; cursor: pointer; }
+    .chatbot-messages-2 { flex: 1; padding: 1rem; overflow-y: auto; background: #0f172a; }
+    .chatbot-input-2 { display: flex; border-top: 1px solid #334155; background: #1e293b; }
+    .chatbot-input-2 input { flex: 1; border: none; padding: 0.75rem; outline: none; background: transparent; color: white; }
+    .chatbot-input-2 button { padding: 0.75rem 1rem; background: #22c55e; color: white; border: none; cursor: pointer; transition: background 0.3s; }
+    .chatbot-input-2 button:hover { background: #16a34a; }
+    .msg-user-2 { background: #3b82f6; color: white; padding: 0.5rem 0.75rem; border-radius: 1rem 1rem 0 1rem; margin-bottom: 0.5rem; max-width: 80%; align-self: flex-end; }
+    .msg-bot-2 { background: #22c55e; color: white; padding: 0.5rem 0.75rem; border-radius: 1rem 1rem 1rem 0; margin-bottom: 0.5rem; max-width: 80%; align-self: flex-start; }
+
+    /* Chatbot 3 (Urban Gardening) */
+    .chatbot-container-3 {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 550px;
+      background: #1e293b;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 1rem;
+      z-index: 1000;
+    }
+    .chatbot-header-3 { background: linear-gradient(to right, #22c55e, #3b82f6); color: white; padding: 0.9rem; font-weight: bold; text-align: center; position: relative; }
+    .chatbot-header-3 button { position: absolute; top: 6px; right: 10px; font-size: 18px; background: transparent; border: none; color: black; font-weight: bold; cursor: pointer; }
+    .chatbot-messages-3 { flex: 1; padding: 1rem; overflow-y: auto; background: #0f172a; display: flex; flex-direction: column; }
+    .chatbot-input-3 { display: flex; border-top: 1px solid #334155; background: #1e293b; }
+    .chatbot-input-3 input { flex: 1; border: none; padding: 0.75rem; outline: none; background: transparent; color: white; font-size: 1rem; }
+    .chatbot-input-3 button { padding: 0.75rem 1rem; background: #22c55e; color: white; border: none; cursor: pointer; transition: background 0.3s; }
+    .chatbot-input-3 button:hover { background: #16a34a; }
+    .msg-user-3 { background: #3b82f6; color: white; padding: 0.6rem 1rem; border-radius: 1rem 1rem 0 1rem; margin-bottom: 0.5rem; max-width: 80%; align-self: flex-end; }
+    .msg-bot-3 { background: #22c55e; color: white; padding: 0.6rem 1rem; border-radius: 1rem 1rem 1rem 0; margin-bottom: 0.5rem; max-width: 80%; align-self: flex-start; }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col">
+
+  <!-- Background -->
+  <div class="fixed inset-0 -z-10 bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
+   
+
+  
+  <!-- Header -->
+  <header class="text-center py-10">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-wide text-green-400"> 🌱 Florafix Community </h1>
+    <p class="mt-4 text-gray-300 text-lg max-w-2xl mx-auto"> Connect with fellow farmers and gardeners, share your experiences, and learn from others in our growing community. </p>
+  </header>
+
+    <!-- ✅ Navigation -->
+  <nav class="w-full flex justify-end px-8 py-4">
+      <ul class="flex space-x-5 text-sm font-medium text-white">
+  <li><a href="index.html" class="hover:text-green-400 transition">Home</a></li>
+  <li><a href="http://127.0.0.1:8000/signup/" class="hover:text-green-400 transition">Signup</a></li>
+  <li><a href="http://127.0.0.1:8000/signin/" class="hover:text-green-400 transition">Signin</a></li>
+  <li><a href="http://127.0.0.1:8000/diagnose/" class="hover:text-green-400 transition">Diagnose</a></li>
+  <li><a href="scheme.html" class="hover:text-green-400 transition">Scheme</a></li>
+  <li><a href="subscription.html" class="hover:text-green-400 transition">Chats</a></li>
+  <li><a href="community.html" class="hover:text-green-400 transition">Community</a></li>
+  <li><a href="about.html" class="hover:text-green-400 transition">About</a></li>
+</ul>
+  </nav>
+
+  <!-- Forums Section -->
+  <section class="flex-1 px-6 md:px-20 pb-16">
+    <h2 class="text-2xl font-semibold mb-8 text-center">Discussion Forums</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+
+      <!-- Forum 1 -->
+      <div class="popup-3d bg-gradient-to-br from-slate-800 via-slate-900 to-black rounded-2xl p-6 shadow-lg border border-gray-700">
+        <h3 class="text-xl font-bold text-green-400">🌿 Plant Disease Identification</h3>
+        <p class="text-sm text-gray-400 mt-2">265 members • 56 discussions</p>
+        <p class="mt-4 text-gray-300">Share images of your plants and get help identifying diseases from experienced community members.</p>
+        <button onclick="openBot1()" class="mt-6 px-4 py-2 bg-green-600 rounded-lg text-white font-semibold shadow-md hover:bg-green-500 transition">Join Discussion</button>
+      </div>
+
+      <!-- Forum 2 -->
+      <div class="popup-3d bg-gradient-to-br from-slate-800 via-slate-900 to-black rounded-2xl p-6 shadow-lg border border-gray-700">
+        <h3 class="text-xl font-bold text-blue-400">🌾 Organic Farming Practices</h3>
+        <p class="text-sm text-gray-400 mt-2">312 members • 89 discussions</p>
+        <p class="mt-4 text-gray-300">Discuss effective organic farming techniques, pest control, and soil improvement methods.</p>
+        <button onclick="openBot2()" class="mt-6 px-4 py-2 bg-blue-600 rounded-lg text-white font-semibold shadow-md hover:bg-blue-500 transition">Join Discussion</button>
+      </div>
+
+      <!-- Forum 3 -->
+      <div class="popup-3d bg-gradient-to-br from-slate-800 via-slate-900 to-black rounded-2xl p-6 shadow-lg border border-gray-700">
+        <h3 class="text-xl font-bold text-pink-400">🌸 Urban Gardening</h3>
+        <p class="text-sm text-gray-400 mt-2">172 members • 37 discussions</p>
+        <p class="mt-4 text-gray-300">Exchange ideas and solutions for successful gardening in limited urban spaces.</p>
+        <button onclick="openBot3()" class="mt-6 px-4 py-2 bg-pink-600 rounded-lg text-white font-semibold shadow-md hover:bg-pink-500 transition">Join Discussion</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-500 text-sm border-t border-gray-800">
+    © 2025 Florafix Community. All rights reserved.
+  </footer>
+
+  <!-- Chatbot 1 (Plant Expert) -->
+  <div id="botModal" class="flex">
+    <div class="chat-container">
+      <span id="closeBot">&times;</span>
+      <div class="chat-header">🌱 Interactive Plant Expert 🌱</div>
+      <div class="chat-box" id="chatBox"></div>
+      <div class="chat-input" id="chatOptions"></div>
+      <input type="file" id="imageInput" accept="image/*" onchange="uploadImage()">
+    </div>
+  </div>
+
+  <!-- Chatbot 2 (Organic Farming) -->
+  <div class="chatbot-container-2" id="chatbot2">
+    <div class="chatbot-header-2">
+      💬 Florafix Assistant
+      <button onclick="closeBot2()">✖</button>
+    </div>
+    <div class="chatbot-messages-2" id="messages2"></div>
+    <div class="chatbot-input-2">
+      <input id="userInput2" type="text" placeholder="Type a number or message..." />
+      <button onclick="sendMessage2()">Send</button>
+    </div>
+  </div>
+
+  <!-- Chatbot 3 (Urban Gardening) -->
+  <div class="chatbot-container-3" id="chatbot3">
+    <div class="chatbot-header-3">
+      💬 Urban Gardening Assistant
+      <button onclick="closeBot3()">✖</button>
+    </div>
+    <div class="chatbot-messages-3" id="messages3"></div>
+    <div class="chatbot-input-3">
+      <input id="userInput3" type="text" placeholder="Type a number or message..." />
+      <button onclick="sendMessage3()">Send</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    /* -------------------- Chatbot 1 -------------------- */
+    const botModal = document.getElementById('botModal');
+    const closeBotBtn = document.getElementById('closeBot');
+    const chatBox = document.getElementById('chatBox');
+    const chatOptions = document.getElementById('chatOptions');
+    const imageInput = document.getElementById('imageInput');
+
+    const plantKnowledge = {
+      "yellow leaves": ["🍂 Yellow leaves may indicate watering issues, nutrient deficiency, or root problems. Inspect soil moisture, check fertilization, and adjust light exposure for healthy foliage."],
+      "wilting": ["💧 Wilting usually occurs due to water stress, heat, or root damage. Examine soil moisture, adjust watering, and ensure roots are healthy."],
+      "powdery mildew": ["❄️ Powdery mildew appears as white powder on leaves. Remove affected leaves, improve airflow, and apply mild fungicide or baking soda solution."],
+      "pests": ["🐛 Pests like aphids, spider mites, and whiteflies damage leaves. Use neem oil, insecticidal soap, or introduce natural predators like ladybugs."],
+      "leaf spots": ["🟤 Dark or brown spots can indicate fungal or bacterial infection. Remove infected leaves, maintain good airflow, and avoid water splashes on leaves."],
+      "root rot": ["🪴 Root rot occurs from overwatering or poor drainage. Check roots, trim affected parts, repot with fresh soil, and adjust watering schedule."],
+      "yellowing tips": ["💛 Yellow leaf tips may indicate over-fertilization, low humidity, or salt buildup. Flush soil if necessary and reduce fertilizer."],
+      "watering": ["💦 Water plants when top 2-3 cm of soil is dry. Avoid overwatering to prevent root rot. Ensure pots have drainage."],
+      "sunlight": ["☀️ Most plants require 4-6 hours of sunlight. Adjust exposure to avoid leaf burn or poor growth."],
+      "fertilizer": ["🌿 Use balanced fertilizers or compost during the growing season. Avoid over-fertilization to prevent leaf burn."],
+      "repot": ["🪴 Repot when roots outgrow the pot or soil is depleted. Use a slightly larger pot and fresh soil for healthy growth."],
+      "soil type": ["🌱 Ensure soil matches plant type. Well-draining for succulents, nutrient-rich for leafy plants."],
+      "humidity": ["💨 Moderate humidity is essential for tropical plants. Increase humidity via misting or water trays if necessary."],
+      "pruning": ["✂️ Prune dead or damaged leaves to encourage healthy growth and better airflow."]
+    };
+    const initialOptions = [
+      {text: "🌱 Plant problems", value: "problems"},
+      {text: "🌿 General advice", value: "advice"},
+      {text: "📸 Upload plant image", value: "image"},
+      {text: "🪴 Soil type", value: "soil type"},
+      {text: "💨 Humidity", value: "humidity"},
+      {text: "✂️ Pruning", value: "pruning"}
+    ];
+
+    function openBot1() { botModal.style.display = 'flex'; startBot(); }
+    closeBotBtn.onclick = () => { botModal.style.display = 'none'; chatBox.innerHTML=''; };
+
+    function startBot() {
+      addMessage("Hello! 👋 I am your plant assistant. I provide detailed guidance for plant health, care, and problem-solving. Select an option below to start.", "bot");
+      showOptions(initialOptions);
+    }
+
+    function showOptions(options) {
+      chatOptions.innerHTML = "";
+      options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.innerText = opt.text;
+        btn.onclick = () => handleOption(opt.value, opt.text);
+        chatOptions.appendChild(btn);
+      });
+    }
+
+    function handleOption(value, displayText) {
+      addMessage(displayText, "user");
+      if(value==="problems"){
+        addMessage("🛠️ You can ask about these common plant issues:", "bot");
+        showOptions([
+          {text:"🍂 Yellow leaves", value:"yellow leaves"},
+          {text:"💧 Wilting", value:"wilting"},
+          {text:"❄️ Powdery mildew", value:"powdery mildew"},
+          {text:"🐛 Pests", value:"pests"},
+          {text:"🟤 Leaf spots", value:"leaf spots"},
+          {text:"🪴 Root rot", value:"root rot"},
+          {text:"💛 Yellowing tips", value:"yellowing tips"}
+        ]);
+      } else if(value==="advice"){
+        addMessage("📋 Explore these general plant care tips:", "bot");
+        showOptions([
+          {text:"💦 Watering", value:"watering"},
+          {text:"☀️ Sunlight", value:"sunlight"},
+          {text:"🌿 Fertilizer", value:"fertilizer"},
+          {text:"🪴 Repotting", value:"repot"}
+        ]);
+      } else if(value==="image"){
+        addMessage("📸 Upload your plant image using the input below. I will help analyze symptoms and provide care guidance.", "bot");
+      } else {
+        addMessage(plantKnowledge[value][0], "bot");
+        showOptions(initialOptions);
+      }
+    }
+
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.className = `chat-message ${sender}`;
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function uploadImage() {
+      const file = imageInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.className = "chat-image";
+        chatBox.appendChild(img);
+        addMessage("📷 Thanks for the image! Observing leaf patterns, spots, and discoloration helps diagnose the issue. Describe symptoms for precise advice.", "bot");
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+      reader.readAsDataURL(file);
+      imageInput.value = "";
+    }
+
+    /* -------------------- Chatbot 2 -------------------- */
+    const chatbot2 = document.getElementById("chatbot2");
+    const messagesContainer2 = document.getElementById("messages2");
+    function openBot2() {
+      chatbot2.style.display = "flex";
+      messagesContainer2.innerHTML = "";
+      appendMessage2("👋 Welcome to Florafix Assistant! Please choose:\n1️⃣ Organic Farming Techniques\n2️⃣ Organic Pest Control\n3️⃣ Soil Improvement Methods", "bot");
+    }
+    function closeBot2() { chatbot2.style.display = "none"; }
+    function appendMessage2(content, sender){
+      const msg = document.createElement("div");
+      msg.classList.add(sender==="user"?"msg-user-2":"msg-bot-2");
+      msg.innerText = content;
+      messagesContainer2.appendChild(msg);
+      messagesContainer2.scrollTop = messagesContainer2.scrollHeight;
+    }
+    function sendMessage2(){
+      const input = document.getElementById("userInput2");
+      const text = input.value.trim();
+      if(!text) return;
+      appendMessage2(text,"user");
+      input.value="";
+      setTimeout(()=>botReply2(text),600);
+    }
+    function botReply2(input){
+      let reply="";
+      switch(input){
+        case"1":reply="🌿 Organic Farming Techniques:\n- Crop Rotation\n- Companion Planting\n- Vermicomposting\n- Mulching\n- Agroforestry\n\n👉 Type '11' to learn about Crop Rotation, '12' for Companion Planting, '13' for Vermicomposting, '14' for Mulching, or '15' for Agroforestry.";break;
+        case"11":reply="🌱 Crop Rotation: Planting different crops in sequential seasons prevents soil depletion, reduces pests/diseases, and maintains fertility.";break;
+        case"12":reply="🌼 Companion Planting: Growing complementary plants together helps pest control and boosts yields. Example: Basil with tomatoes repels insects.";break;
+        case"13":reply="🪱 Vermicomposting: Using earthworms to break down organic waste creates nutrient-rich compost that improves soil and plant health.";break;
+        case"14":reply="🍂 Mulching: Applying straw, leaves, or compost on soil conserves moisture, prevents weeds, and improves fertility.";break;
+        case"15":reply="🌳 Agroforestry: Integrating trees with crops/livestock enhances biodiversity, prevents erosion, and improves soil health.";break;
+        case"2":reply="🐛 Organic Pest Control Methods:\n- Neem Oil Spray\n- Predatory Insects\n- Traps and Barriers\n- Garlic & Chili Spray\n- Crop Diversity\n\n👉 Type '21' for Neem Oil, '22' for Predators, '23' for Traps, '24' for Garlic Spray, '25' for Crop Diversity.";break;
+        case"21":reply="🌿 Neem Oil Spray: Natural insect repellent against aphids, mites, and whiteflies. Safe and eco-friendly.";break;
+        case"22":reply="🕷️ Predators: Encouraging ladybugs, lacewings, and spiders helps naturally control pest populations.";break;
+        case"23":reply="🪤 Traps & Barriers: Sticky traps, pheromone traps, and netting prevent pest entry and reduce crop damage.";break;
+        case"24":reply="🌶️ Garlic & Chili Spray: Homemade solution that deters insects and fungi. Cheap and safe.";break;
+        case"25":reply="🌾 Crop Diversity: Planting mixed crops disrupts pest cycles and prevents infestations.";break;
+        case"3":reply="🌍 Soil Improvement Methods:\n- Composting\n- Green Manure\n- Biofertilizers\n- Reduced Tillage\n- Cover Crops\n\n👉 Type '31' for Composting, '32' for Green Manure, '33' for Biofertilizers, '34' for Reduced Tillage, '35' for Cover Crops.";break;
+        case"31":reply="♻️ Composting: Recycling organic waste into humus-rich compost improves fertility and moisture retention.";break;
+        case"32":reply="🌱 Green Manure: Growing plants like clover and plowing them back enriches soil with nitrogen and organic matter.";break;
+        case"33":reply="🔬 Biofertilizers: Beneficial microbes like Rhizobium increase nutrient availability in soil.";break;
+        case"34":reply="🚜 Reduced Tillage: Minimizing soil disturbance preserves soil organisms and prevents erosion.";break;
+        case"35":reply="🌿 Cover Crops: Planting rye, legumes, or grasses between growing seasons protects soil and fixes nitrogen.";break;
+        default:reply="👋 Please choose:\n1️⃣ Organic Farming Techniques\n2️⃣ Organic Pest Control\n3️⃣ Soil Improvement Methods";}
+      appendMessage2(reply,"bot");
+    }
+    document.getElementById("userInput2").addEventListener("keypress",function(e){if(e.key==="Enter")sendMessage2();});
+
+    /* -------------------- Chatbot 3 -------------------- */
+    const chatbot3 = document.getElementById("chatbot3");
+    const messagesContainer3 = document.getElementById("messages3");
+    function openBot3(){
+      chatbot3.style.display = "flex";
+      messagesContainer3.innerHTML="";
+      appendMessage3("👋 Welcome to the Urban Gardening Assistant! 🌸\nHere are some topics you can explore:\n1️⃣ Container Gardening\n2️⃣ Balcony/ Rooftop Gardening\n3️⃣ Vertical Gardening\n4️⃣ Hydroponics\n5️⃣ Composting in Small Spaces","bot");
+    }
+    function closeBot3(){chatbot3.style.display="none";}
+    function appendMessage3(content,sender){
+      const msg=document.createElement("div");
+      msg.classList.add(sender==="user"?"msg-user-3":"msg-bot-3");
+      msg.innerText=content;
+      messagesContainer3.appendChild(msg);
+      messagesContainer3.scrollTop=messagesContainer3.scrollHeight;
+    }
+    function sendMessage3(){
+      const input=document.getElementById("userInput3");
+      const text=input.value.trim();
+      if(!text)return;
+      appendMessage3(text,"user");
+      input.value="";
+      setTimeout(()=>botReply3(text),600);
+    }
+    function botReply3(input){
+      let reply="";
+      switch(input){
+        case"1":reply="🪴 Container Gardening:\n- Choose lightweight pots\n- Ensure proper drainage\n- Use nutrient-rich soil\n- Best for herbs and small veggies.\n\n👉 Type '11' for Tips, '12' for Suitable Plants.";break;
+        case"11":reply="🌱 Tips for Container Gardening:\nUse big enough pots, water regularly, and rotate containers for even sunlight.";break;
+        case"12":reply="🥬 Suitable Plants: Herbs (basil, mint), leafy greens, cherry tomatoes, peppers, strawberries.";break;
+        case"2":reply="🌇 Balcony/Rooftop Gardening:\n- Use railing planters & grow bags\n- Wind protection is important\n- Focus on sun-loving crops\n\n👉 Type '21' for Design Ideas, '22' for Precautions.";break;
+        case"21":reply="🎍 Design Ideas: Hanging baskets, tiered shelves, and vertical trellises make great use of space.";break;
+        case"22":reply="⚠️ Precautions: Ensure weight load capacity, use waterproofing, and protect from strong winds.";break;
+        case"3":reply="🌿 Vertical Gardening:\n- Grow upwards using trellises & wall planters\n- Saves space & improves air quality\n\n👉 Type '31' for Benefits, '32' for Plant Choices.";break;
+        case"31":reply="✅ Benefits of Vertical Gardening: Space-saving, reduces heat, enhances aesthetics, and good air purification.";break;
+        case"32":reply="🌸 Plant Choices: Ferns, pothos, lettuce, spinach, strawberries, and small climbers.";break;
+        case"4":reply="💧 Hydroponics:\n- Grow plants without soil\n- Needs nutrient solution & grow lights\n- Best for leafy greens\n\n👉 Type '41' for Setup, '42' for Suitable Crops.";break;
+        case"41":reply="🔧 Hydroponics Setup: Use net pots, nutrient solution, water pump, and LED grow lights.";break;
+        case"42":reply="🥗 Suitable Crops: Lettuce, spinach, kale, herbs like basil and mint.";break;
+        case"5":reply="♻️ Composting in Small Spaces:\n- Use compost bins or bokashi system\n- Add kitchen waste & brown matter\n- Great for urban homes\n\n👉 Type '51' for Methods, '52' for Benefits.";break;
+        case"51":reply="🗑️ Methods: Bokashi bins, worm composting, and compact tumblers.";break;
+        case"52":reply="🌍 Benefits: Reduces waste, produces free organic fertilizer, and supports healthy soil.";break;
+        default:reply="👋 Please choose one of the options:\n1️⃣ Container Gardening\n2️⃣ Balcony/ Rooftop Gardening\n3️⃣ Vertical Gardening\n4️⃣ Hydroponics\n5️⃣ Composting in Small Spaces";}
+      appendMessage3(reply,"bot");
+    }
+    document.getElementById("userInput3").addEventListener("keypress",function(e){if(e.key==="Enter")sendMessage3();});
+  </script>
+</body>
+</html>
