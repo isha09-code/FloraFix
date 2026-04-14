@@ -148,3 +148,51 @@ cd FloraFix
 pip install -r requirements.txt
 python manage.py runserver
 ```
+## 🧬 Future Scope
+
+🔐 Advanced User Authentication System  
+📊 AI-Powered Analytics Dashboard  
+🗄️ Backend Scalability (Django APIs / Cloud Integration)  
+📱 Mobile Application (Android & iOS)  
+🌍 Multilingual Support for regional farmers  
+🌾 IoT-Based Smart Farming Integration  
+
+---
+
+## 📎 Resources
+
+* TensorFlow / Keras  
+* Django Framework  
+* HTML, CSS, JavaScript  
+* GitHub  
+
+---
+
+## 🏆 Achievements
+
+✅ Developed AI-based plant disease detection system  
+✅ Integrated Deep Learning model (VGG-19)  
+✅ Implemented Ayurvedic treatment recommendations  
+✅ Built end-to-end ML + Web platform  
+
+---
+
+## 👩‍💻 Team
+
+**Isha Chakraborty**  
+💻 Developer | 🚀 Innovator  
+
+Asmita Banerjee  
+Ankana Sadhukhan  
+
+---
+
+## ⭐ Support
+
+If you like this project, please ⭐ the repository and share it!
+
+---
+
+<p align="center">
+  🚀 Built with passion by Team Code Crackers 🌱
+</p>
