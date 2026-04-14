@@ -83,7 +83,7 @@ FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assi
 
 ---
 
-### 🌱 Diagnose Page
+### 🌱 Diagnosis Page
 <img width="895" height="729" alt="diagnosis" src="https://github.com/user-attachments/assets/6b17f038-93f4-405c-a6c8-aec0d4db9386" />
 
 ---
