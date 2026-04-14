@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?color=00FF7F&size=30&center=true&vCenter=true&width=800&lines=🌿+FloraFix;Diagnose+•+Treat+•+Thrive;AI+Plant+Disease+Detection+Platform;Sustainable+Farming+with+AI+%2B+Ayurveda" />
 </p>
-
 <p align="center">
   <img src="https://img.shields.io/badge/Frontend-HTML%2FCSS-blue?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Backend-Django-darkgreen?style=for-the-badge&logo=django"/>
@@ -9,6 +8,9 @@
   <img src="https://img.shields.io/badge/Model-VGG19-purple?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Focus-Sustainable%20Agri-green?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge"/>
+  <a href="https://florafix-j0u6.onrender.com">
+    <img src="https://img.shields.io/badge/🌐 Live-florafix.onrender.com-00FF7F?style=for-the-badge"/>
+  </a>
 </p>
 
 ---
@@ -136,13 +138,13 @@ FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assi
 ## 🧪 How to Run the Project
 
 ### 📌 Requirements
-
 - Python installed  
 
 ### ▶️ Steps
 
 ```bash
-git clone https://github.com/YOUR-REPO-LINK
+git clone https://github.com/isha09-code/FloraFix
 cd FloraFix
 pip install -r requirements.txt
 python manage.py runserver
+```
