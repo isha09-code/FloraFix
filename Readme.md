@@ -1,3 +1,10 @@
+<img width="726" height="610" alt="sign up,in" src="https://github.com/user-attachments/assets/1d4d2835-fd40-4fa8-9dd8-6f5caf5cde9f" />
+<img width="899" height="725" alt="home" src="https://github.com/user-attachments/assets/3f1f9578-b298-45f7-a860-85b84c94fdca" />
+<img width="895" height="739" alt="government scheme" src="https://github.com/user-attachments/assets/a37dae75-f6a0-48e3-9889-abcdd58345b2" />
+<img width="895" height="729" alt="diagnosis" src="https://github.com/user-attachments/assets/6b17f038-93f4-405c-a6c8-aec0d4db9386" />
+<img width="901" height="723" alt="community" src="https://github.com/user-attachments/assets/919ab024-5c27-4f20-883e-2e7b1c351e2c" />
+<img width="896" height="695" alt="chats" src="https://github.com/user-attachments/assets/0863daae-fdd8-4a9e-abec-fd37e6dad55d" />
+<img width="890" height="695" alt="about" src="https://github.com/user-attachments/assets/f8381daa-d9d7-49c6-be0c-1a95a67b686a" />
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?color=00FF7F&size=30&center=true&vCenter=true&width=800&lines=🌿+FloraFix;Diagnose+•+Treat+•+Thrive;AI+Plant+Disease+Detection+Platform;Sustainable+Farming+with+AI+%2B+Ayurveda" />
 </p>
