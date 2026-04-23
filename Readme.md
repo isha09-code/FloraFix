@@ -104,11 +104,6 @@ FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assi
 
 ---
 
-### ℹ️ About Page
-<img width="890" height="695" alt="about" src="https://github.com/user-attachments/assets/f8381daa-d9d7-49c6-be0c-1a95a67b686a" />
-
----
-
 
 ## 📊 Model Performance
 
