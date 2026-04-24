@@ -124,6 +124,7 @@ FloraFix aims to build a **smart, accessible, and eco-friendly agricultural assi
 
 ## 🧪 How to Run the Project
 
+
 ### 📌 Requirements
 - Python installed  
 
