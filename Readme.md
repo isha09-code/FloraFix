@@ -15,7 +15,7 @@
 
 ---
 
-# 🌿 FloraFix
+# 🌿 FloraFix 🌿
 
 💡 *AI-powered platform to detect plant diseases and provide smart, sustainable treatments using Ayurvedic intelligence.*
 
